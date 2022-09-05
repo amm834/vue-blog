@@ -40,12 +40,13 @@ const posts = computed(() => {
         <a class="nav-link" aria-current="page" href="#"
            @click="setCurrentPeriod(period)"
            :class="{'text-active': period === currentPeriod}"
+           :data-test="period"
         >{{ period }}</a>
       </div>
 
     </nav>
     <a href="#" class="card mt-3 text-decoration-none" v-for="post in posts" :key="post.id">
-      <span class="card-body">{{ post.title }} {{post.created.format("Do MMM")}}</span>
+      <span class="card-body">{{ post.title }} {{ post.created.format("Do MMM") }}</span>
 
     </a>
   </section>
