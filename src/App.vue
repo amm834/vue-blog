@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import Timeline from "./components/Timeline.vue";
+import Timeline from "./components/TimeLine.vue";
 </script>
 
 <template>
-
   <div class="container">
     <Timeline />
   </div>
