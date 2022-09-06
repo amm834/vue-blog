@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { $ref } from "vue/macros";
-import { Post, thisMonth, thisWeek, today } from "../mocks";
+import { Post } from "@/mocks";
 import { computed } from "vue";
 import moment from "moment";
 import TimeLinePost from "@/components/TimeLinePost.vue";
@@ -20,7 +20,8 @@ if (!store.getState().posts.loaded) {
 
 const allPosts: Post[] = store.getState().posts.ids.reduce<Post[]>((acc, id) => {
   const post = store.getState().posts.all.get(id);
-  if (!post) throw new Error("No post ");
+
+  if (!post) throw new Error("No post");
 
   return acc.concat(post);
 }, []);
