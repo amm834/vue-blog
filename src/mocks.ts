@@ -1,6 +1,6 @@
 import moment from "moment";
 
-interface Post {
+export interface Post {
   id: string;
   title: string;
   created: moment.Moment;

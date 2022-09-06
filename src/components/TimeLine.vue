@@ -3,6 +3,7 @@ import { $ref } from "vue/macros";
 import { thisMonth, thisWeek, today } from "../mocks";
 import { computed } from "vue";
 import moment from "moment";
+import TimeLinePost from "@/components/TimeLinePost.vue";
 
 type Period = "Today" | "This Week" | "This Month";
 const periods: Period[] = ["Today", "This Week", "This Month"];
@@ -31,7 +32,7 @@ const posts = computed(() => {
 
 <template>
   <section>
-    <nav class="nav justify-content-center mt-3 shadow-sm rounded-2 border">
+    <nav class="nav justify-content-center my-3 shadow-sm rounded-2 border">
       <div
         class="nav-item"
         v-for="period in periods"
@@ -45,9 +46,11 @@ const posts = computed(() => {
       </div>
 
     </nav>
-    <a href="#" class="card mt-3 text-decoration-none" v-for="post in posts" :key="post.id">
-      <span class="card-body">{{ post.title }} {{ post.created.format("Do MMM") }}</span>
+    <TimeLinePost
+      v-for="post in posts"
+      :key="post.id"
+      :post="post"
+    />
 
-    </a>
   </section>
 </template>
