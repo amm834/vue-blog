@@ -14,8 +14,11 @@ let currentPeriod = $ref<Period>("Today");
 const setCurrentPeriod = (period: Period) => currentPeriod = period;
 
 const store = useStore();
+if (!store.getState().posts.loaded) {
+  await store.fetchPosts();
+}
 
-const allPosts = store.getState().posts.ids.reduce<Post[]>((acc, id) => {
+const allPosts: Post[] = store.getState().posts.ids.reduce<Post[]>((acc, id) => {
   const post = store.getState().posts.all.get(id);
   if (!post) throw new Error("No post ");
 
