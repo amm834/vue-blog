@@ -1,6 +1,7 @@
 import { reactive, readonly } from "vue";
 import type { Post } from "@/mocks";
 import axios from "axios";
+import { thisMonth, thisWeek, today } from "@/mocks";
 
 interface State {
   posts: PostsState;
@@ -42,11 +43,20 @@ class Store {
 
 }
 
+const all = new Map();
+all.set(today.id, today);
+all.set(thisWeek.id, thisWeek);
+all.set(thisMonth.id, thisMonth);
+
 const store = new Store({
   posts: {
-    all: new Map(),
-    ids: [],
+    all,
+    ids: [today.id, thisWeek.id, thisMonth.id],
     loaded: false
   }
 });
-store.getState().posts.all.get("1");
+
+
+export default function useStore() {
+  return store;
+}
