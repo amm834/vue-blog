@@ -5,6 +5,7 @@ import App from "./App.vue";
 import "./assets/main.scss";
 import axios from "axios";
 import { thisMonth, thisWeek, today } from "@/mocks";
+import router from "@/router";
 
 
 function delay() {
@@ -25,5 +26,7 @@ axios.get = async (url: string) => {
   }
 };
 const app = createApp(App);
+
+app.use(router);
 
 app.mount("#app");

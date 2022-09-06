@@ -1,9 +1,7 @@
 import TimeLine from "../TimeLine.vue";
-import { mount, flushPromises } from "@vue/test-utils";
-import { describe, it, vi } from "vitest";
-import { expect } from "vitest";
+import { flushPromises, mount } from "@vue/test-utils";
+import { describe, expect, it, vi } from "vitest";
 import { thisMonth, thisWeek, today } from "../../mocks";
-import { beforeAll, beforeEach } from "vitest/dist/browser";
 
 vi.mock("axios", () => ({
   default: {
