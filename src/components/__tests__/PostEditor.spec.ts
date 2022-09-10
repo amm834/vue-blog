@@ -16,8 +16,6 @@ describe("PostEditor", () => {
 
     await wrapper.find("[data-test='title']").setValue("My new post title");
     await wrapper.find("[data-test='content']").setValue("## My content");
-
-
     await wrapper.find("[data-test='submit']").trigger("click");
 
     const emitted = (wrapper.emitted()["save"] as any)[0][0];

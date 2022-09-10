@@ -35,13 +35,13 @@ watch(content, debounce((newContent) => {
 
 
 const save = () => {
-  const newPost: Post = {
+  const new_post: Post = {
     ...post,
     title: title,
     html: html.value,
     markdown: content.value
   };
-  emits("save", newPost);
+  emits("save", new_post);
 };
 
 </script>

@@ -3,6 +3,8 @@
 import PostEditor from "@/components/PostEditor.vue";
 import type { Post } from "@/mocks";
 import moment from "moment";
+import useStore from "@/store";
+import { useRouter } from "vue-router";
 
 const post: Post = {
   id: "-1",
@@ -10,8 +12,12 @@ const post: Post = {
   created: moment()
 };
 
-const save = (post: Post) => {
-  console.log(post);
+const router = useRouter();
+const store = useStore();
+
+const save = async (post: Post) => {
+  await store.createPost(post);
+  await router.push("/");
 };
 </script>
 
