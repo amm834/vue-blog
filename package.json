@@ -13,10 +13,12 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.184",
     "@types/marked": "^4.0.7",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "highlight.js": "^11.6.0",
+    "lodash": "^4.17.21",
     "marked": "^4.1.0",
     "moment": "^2.29.4",
     "pinia": "^2.0.21",
@@ -26,7 +28,6 @@
   "devDependencies": {
     "@popperjs/core": "^2.11.6",
     "@rushstack/eslint-patch": "^1.1.4",
-    "@types/axios": "^0.14.0",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^16.11.57",
     "@vitejs/plugin-vue": "^3.1.0",

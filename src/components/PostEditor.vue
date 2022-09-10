@@ -4,6 +4,7 @@ import { onMounted, ref, watch, watchEffect } from "vue";
 import { marked } from "marked";
 import parse = marked.parse;
 import hljs from "highlight.js";
+import { debounce } from "lodash";
 
 const { newPost } = defineProps<{
   newPost: Post
@@ -11,18 +12,22 @@ const { newPost } = defineProps<{
 
 
 const title = $ref(newPost.title);
-let content = $ref("Enter your post in markdown here \n ");
-let html = $ref("");
+let content = ref("Enter your post in markdown here \n ");
+let html = ref("");
 
-watchEffect(() => {
-  html = parse(content, {
+const parseHTML = (raw: string) => {
+  html.value = parse(raw, {
     gfm: true,
     breaks: true,
-    highlight(code: string, lang: string, callback?: (error: any, code?: string) => void): string | void {
+    highlight(code: string): string {
       return hljs.highlightAuto(code).value;
     }
   });
-});
+};
+
+watch(content, debounce((newContent) => {
+  parseHTML(newContent);
+}, 500), { immediate: true });
 
 </script>
 
