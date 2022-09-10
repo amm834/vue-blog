@@ -1,5 +1,8 @@
 @use "bootstrap/dist/css/bootstrap.min.css";
 
+$text-primary: rgb(126 34 206);
+
 .text-active {
-  color: rgb(126 34 206);
+  color: $text-primary;
 }
+

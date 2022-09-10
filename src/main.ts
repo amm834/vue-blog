@@ -6,6 +6,7 @@ import "./assets/main.scss";
 import axios from "axios";
 import { thisMonth, thisWeek, today } from "@/mocks";
 import router from "@/router";
+import "highlight.js/styles/github-dark-dimmed.css";
 
 
 function delay() {

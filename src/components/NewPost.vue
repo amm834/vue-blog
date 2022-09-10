@@ -6,10 +6,11 @@ import moment from "moment";
 
 const post: Post = {
   id: "-1",
-  title: "New Post Title",
+  title: "Enter post title",
   created: moment()
 };
 </script>
+
 <template>
   <p class="fw-bold">New Post</p>
   <PostEditor :new-post="post" />
