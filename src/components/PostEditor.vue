@@ -3,6 +3,7 @@ import type { Post } from "@/mocks";
 import { onMounted, ref, watch, watchEffect } from "vue";
 import { marked } from "marked";
 import parse = marked.parse;
+// @ts-ignore
 import hljs from "highlight.js";
 import { debounce } from "lodash";
 
@@ -10,6 +11,9 @@ const { newPost } = defineProps<{
   newPost: Post
 }>();
 
+const emits = defineEmits<{
+  (e: "save", post: Post): void,
+}>();
 
 const title = $ref(newPost.title);
 let content = ref("Enter your post in markdown here \n ");
@@ -29,10 +33,23 @@ watch(content, debounce((newContent) => {
   parseHTML(newContent);
 }, 500), { immediate: true });
 
+const save = () => {
+  const post: Post = {
+    ...newPost,
+    title: title,
+    html: html.value,
+    markdown: content.value
+  };
+  emits("save", post);
+};
+
 </script>
 
 <template>
   <div>
+    <nav class="my-3 d-flex justify-content-end">
+      <button class="btn btn-success" @click="save">Save</button>
+    </nav>
     <input type="text"
            v-model="title"
            class="form-control"

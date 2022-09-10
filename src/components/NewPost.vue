@@ -9,9 +9,13 @@ const post: Post = {
   title: "Enter post title",
   created: moment()
 };
+
+const save = (post: Post) => {
+  console.log(post);
+};
 </script>
 
 <template>
   <p class="fw-bold">New Post</p>
-  <PostEditor :new-post="post" />
+  <PostEditor :new-post="post" @save="save" />
 </template>
