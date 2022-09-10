@@ -17,5 +17,5 @@ const save = (post: Post) => {
 
 <template>
   <p class="fw-bold">New Post</p>
-  <PostEditor :new-post="post" @save="save" />
+  <PostEditor :post="post" @save="save" />
 </template>

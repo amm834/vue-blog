@@ -7,15 +7,15 @@ import parse = marked.parse;
 import hljs from "highlight.js";
 import { debounce } from "lodash";
 
-const { newPost } = defineProps<{
-  newPost: Post
+const { post } = defineProps<{
+  post: Post
 }>();
 
 const emits = defineEmits<{
   (e: "save", post: Post): void,
 }>();
 
-const title = $ref(newPost.title);
+const title = $ref(post.title);
 let content = ref("Enter your post in markdown here \n ");
 let html = ref("");
 
@@ -31,16 +31,17 @@ const parseHTML = (raw: string) => {
 
 watch(content, debounce((newContent) => {
   parseHTML(newContent);
-}, 500), { immediate: true });
+}, 0), { immediate: true });
+
 
 const save = () => {
-  const post: Post = {
-    ...newPost,
+  const newPost: Post = {
+    ...post,
     title: title,
     html: html.value,
     markdown: content.value
   };
-  emits("save", post);
+  emits("save", newPost);
 };
 
 </script>
@@ -48,18 +49,32 @@ const save = () => {
 <template>
   <div>
     <nav class="my-3 d-flex justify-content-end">
-      <button class="btn btn-success" @click="save">Save</button>
+      <!--       Submit Button -->
+      <button
+        class="btn btn-success"
+        @click="save"
+        data-test="submit"
+      >Save
+      </button>
     </nav>
+
+    <!--     Post title -->
     <input type="text"
            v-model="title"
+           data-test="title"
            class="form-control"
     >
     <div class="row mt-4">
       <div class="col-md-6">
 
         <!--        Markdown content-->
-        <textarea class="form-control" rows="10" placeholder="Enter your post here ..."
-                  v-model="content"></textarea>
+        <textarea
+          v-model="content"
+          data-test="content"
+          class="form-control"
+          rows="10"
+          placeholder="Enter your post here ..."
+        ></textarea>
       </div>
       <div class="col-md-6">
         <!--        Rendered HTML content -->
