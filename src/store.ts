@@ -13,6 +13,12 @@ interface PostsState {
   loaded: boolean;
 }
 
+export interface User {
+  id: string;
+  username: string;
+  password: string;
+}
+
 class Store {
   private readonly state: State;
 
@@ -41,6 +47,10 @@ class Store {
     this.state.posts = postState;
   }
 
+
+  async createUser(user: User) {
+    console.log(user);
+  }
 
   async createPost(post: Post) {
     const response = await axios.post<Post>("/posts", post);

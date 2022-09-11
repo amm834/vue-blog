@@ -2,10 +2,7 @@
 import { computed } from "vue";
 import { length, required, Status, validate } from "@/services/validation";
 import FormInput from "./FormInput.vue";
-
-function submit() {
-  // submit ...
-}
+import useStore, { User } from "@/store";
 
 
 const username = $ref("username");
@@ -18,13 +15,25 @@ const passwordStatus = computed<Status>(() => {
   return validate(password, [required(), length({ min: 8, max: 20 })]);
 });
 
+
+const store = useStore();
+
+async function submit() {
+  const user: User = {
+    id: "-1",
+    username,
+    password
+  };
+  await store.createUser(user);
+}
+
 </script>
 
 <template>
   <div class="card">
     <div class="card-header">Sign Up</div>
     <div class="card-body">
-      <form @submit="submit">
+      <form @submit.prevent="submit">
         <FormInput
           label="Username"
           type="text"
@@ -37,6 +46,7 @@ const passwordStatus = computed<Status>(() => {
           v-model="password"
           :error="passwordStatus.message"
         />
+        <button class="btn btn-success" :disabled="!usernameStatus.valid || !passwordStatus.valid">Sign Up</button>
       </form>
     </div>
   </div>
