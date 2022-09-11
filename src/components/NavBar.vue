@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { useModal } from "@/composables/useModal";
+import FormInput from "@/components/FormInput.vue";
+import SignUp from "@/components/SignUp.vue";
 
-const {showModal} = useModal();
+const { showModal } = useModal();
+const username = $ref("some");
 </script>
 
 <template>
 
   <teleport to="#modal">
-    Hey there
+    <SignUp />
   </teleport>
+
   <nav class="navbar navbar-expand-lg mt-3">
     <div class="container-fluid">
       <div>

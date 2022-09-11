@@ -8,22 +8,16 @@ const modal = useModal();
 <template>
   <div class="popup" :class="modal.show.value ? 'd-block' : 'd-none'">
 
-    <div class="w-50 position-absolute start-50 translate-middle rounded-2" style="top:20%">
-      <div class="card">
-        <h5 class="card-header">Sign Up</h5>
-        <div class="card-body">
+    <button
+      class="btn btn-danger close-btn"
+      @click="modal.hideModal"
+    >
+      Close
+    </button>
 
-          <!--     receive message here -->
-          <div id="modal" class="card-body"></div>
-
-          <button
-            class="btn btn-primary"
-            @click="modal.hideModal"
-          >
-            Close
-          </button>
-        </div>
-      </div>
+    <div class="w-50 position-absolute start-50 translate-middle rounded-2" style="top:30%">
+      <!--     receive message here -->
+      <div id="modal"></div>
     </div>
   </div>
 </template>
@@ -41,6 +35,7 @@ const modal = useModal();
 }
 
 .close-btn {
+  position: absolute;
   right: 2rem;
   top: 1rem;
 }

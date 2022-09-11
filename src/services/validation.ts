@@ -1,6 +1,5 @@
 // validate("value", [required(), length({ min: 5, max: 10 })]);
 
-
 interface Rule {
   type: "required" | "length";
 }
@@ -26,6 +25,7 @@ export function required(): Required {
   };
 }
 
+
 export function length(options: LengthOptions): Length {
   return {
     type: "length",
@@ -33,7 +33,8 @@ export function length(options: LengthOptions): Length {
   };
 }
 
-interface Status {
+
+export interface Status {
   valid: boolean;
   message?: string;
 }
