@@ -8,6 +8,7 @@ import { thisMonth, thisWeek, today } from "./mocks";
 import router from "@/router";
 import "highlight.js/styles/github-dark-dimmed.css";
 import { random } from "lodash";
+import { store, storeKey } from "@/store";
 
 
 function delay() {
@@ -45,5 +46,6 @@ axios.post = async (url: string, post: Post) => {
 const app = createApp(App);
 
 app.use(router);
-
+// TODO: fix that out type err
+app.provide(storeKey, store);
 app.mount("#app");

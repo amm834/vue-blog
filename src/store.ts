@@ -1,4 +1,4 @@
-import { reactive, readonly } from "vue";
+import { inject, reactive, readonly } from "vue";
 import type { Post } from "@/mocks";
 import { thisMonth, thisWeek, today } from "@/mocks";
 import axios from "axios";
@@ -19,12 +19,15 @@ export interface User {
   password: string;
 }
 
+export const storeKey = Symbol("store");
+
 class Store {
   private readonly state: State;
 
   constructor(initial: State) {
     this.state = reactive(initial);
   }
+
 
   getState() {
     return readonly(this.state);
@@ -65,7 +68,7 @@ all.set(today.id, today);
 all.set(thisWeek.id, thisWeek);
 all.set(thisMonth.id, thisMonth);
 
-const store = new Store({
+export const store = new Store({
   posts: {
     all,
     ids: [today.id, thisWeek.id, thisMonth.id],
@@ -74,6 +77,10 @@ const store = new Store({
 });
 
 
-export default function useStore() {
-  return store;
+export default function useStore(): Store {
+  const _store = inject<Store>(storeKey);
+  if (!_store) {
+    throw new Error("Did you forget to provide call?");
+  }
+  return _store;
 }
