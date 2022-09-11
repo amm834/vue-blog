@@ -9,7 +9,6 @@ import Spinner from "./Spinner.vue";
     <template #default>
       <TimeLine />
     </template>
-
     <template #fallback>
       <Spinner />
     </template>
