@@ -58,7 +58,7 @@ export function validate(value: InputValue, validators: Validators[]): Status {
       if (len < validator.options.min || len > validator.options.max) {
         return {
           valid: false,
-          message: `This value must be between ${validator.options.min} to ${validator.options.max} characters`
+          message: `This value must be between ${validator.options.min} and ${validator.options.max} characters`
         };
       }
     }
