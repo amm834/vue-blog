@@ -19,9 +19,9 @@ defineEmits<{
     <input
       id="name"
       :type="type"
-      v-model="modelValue"
-      class="form-control" :class="error ? 'is-invalid' : 'is-valid' "
+      :value="modelValue"
       @input="$emit('update:modelValue',$event.target.value)"
+      class="form-control" :class="error ? 'is-invalid' : 'is-valid' "
     >
     <small class="invalid-feedback">{{ error }}</small>
   </div>
