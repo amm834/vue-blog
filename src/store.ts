@@ -21,7 +21,7 @@ export interface User {
 
 export const storeKey = Symbol("store");
 
-class Store {
+export class Store {
   private readonly state: State;
 
   constructor(initial: State) {

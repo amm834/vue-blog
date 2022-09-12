@@ -2,6 +2,7 @@ import TimeLine from "../TimeLine.vue";
 import { flushPromises, mount } from "@vue/test-utils";
 import { describe, expect, it, vi } from "vitest";
 import { thisMonth, thisWeek, today } from "../../mocks";
+import { Store } from "../../store";
 
 vi.mock("axios", () => ({
   default: {
@@ -17,6 +18,13 @@ vi.mock("axios", () => ({
 
 
 const mountTimeLine = () => {
+  const store = new Store({
+    posts: {
+      ids: [],
+      loaded: false,
+      all: new Map()
+    }
+  });
   return mount({
     components: { TimeLine },
     template: `
