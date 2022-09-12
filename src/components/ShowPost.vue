@@ -1,16 +1,15 @@
 <script lang="ts" setup>
-import { useRoute } from "vue-router";
-import useStore from "@/store";
-
-const routes = useRoute();
-const id = routes.params.id as string;
-const store = useStore();
-const post = store.getState().posts.all.get(id);
-console.log(post);
+import PostViewer from "@/components/PostViewer.vue";
+import Spinner from "@/components/Spinner.vue";
 </script>
 
 <template>
-  <div>
-    Show post
-  </div>
+  <suspense>
+    <template #default>
+      <PostViewer />
+    </template>
+    <template #fallback>
+      <Spinner />
+    </template>
+  </suspense>
 </template>
