@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useModal } from "@/composables/useModal";
-import FormInput from "@/components/FormInput.vue";
 import SignUp from "@/components/SignUp.vue";
 import { computed, h } from "vue";
 import useStore from "@/store";

@@ -1,8 +1,8 @@
-import { ref } from "vue";
+import { ref, shallowRef } from "vue";
 
 
 const show = ref<boolean>(false);
-const component = ref();
+const component = shallowRef();
 
 export function useModal() {
   return {
