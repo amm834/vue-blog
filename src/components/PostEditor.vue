@@ -15,8 +15,7 @@ const post = store.getState().posts.all.get(id);
 if (!post) {
   throw new Error("post not found ");
 }
-console.log("author", post.authorId);
-console.log(store.getState().users.currentUserId);
+
 
 if (post.authorId !== store.getState().users.currentUserId) {
   await router.push("/");

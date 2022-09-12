@@ -11,13 +11,15 @@ if (!store.getState().posts.loaded) {
 }
 
 const post = store.getState().posts.all.get(id);
-console.log(post);
+if (!post) throw new Error("post is not defined");
+const isAuthorized = post.authorId === store.getState().users.currentUserId;
 </script>
 
 <template>
   <div>
     <router-link :to="`/posts/${post.id}/edit`"
                  class="btn btn-outline-info"
+                 v-if="isAuthorized"
     >
       Edit
     </router-link>
