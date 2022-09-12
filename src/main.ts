@@ -34,11 +34,15 @@ axios.post = async (url: string, payload: any) => {
   await delay();
   if (url === "/posts") {
     const id = random(1, 10000);
+    const post = {
+      id: id.toString(),
+      title: payload.title,
+      html: payload.html,
+      created: payload.created,
+      markdown: payload.markdown
+    };
     return Promise.resolve({
-      data: {
-        ...payload,
-        id
-      }
+      data: post
     });
   }
 
