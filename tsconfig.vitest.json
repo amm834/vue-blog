@@ -7,8 +7,6 @@
     "types": [
       "node",
       "jsdom"
-    ],
-    "preserveValueImports": true,
-    "isolatedModules": true
+    ]
   }
 }

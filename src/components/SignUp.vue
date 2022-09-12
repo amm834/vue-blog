@@ -3,6 +3,8 @@ import { computed } from "vue";
 import { length, required, Status, validate } from "@/services/validation";
 import FormInput from "./FormInput.vue";
 import useStore, { User } from "@/store";
+import { useRouter } from "vue-router";
+import { useModal } from "@/composables/useModal";
 
 
 const username = $ref("username");
@@ -17,6 +19,8 @@ const passwordStatus = computed<Status>(() => {
 
 
 const store = useStore();
+const router = useRouter();
+const modal = useModal();
 
 async function submit() {
   const user: User = {
@@ -25,6 +29,8 @@ async function submit() {
     password
   };
   await store.createUser(user);
+  modal.hideModal();
+  await router.push("/posts/new");
 }
 
 </script>

@@ -5,10 +5,10 @@ import App from "./App.vue";
 import "./assets/main.scss";
 import axios from "axios";
 import { thisMonth, thisWeek, today } from "./mocks";
-import router from "@/router";
 import "highlight.js/styles/github-dark-dimmed.css";
 import { random } from "lodash";
 import { store, storeKey } from "@/store";
+import router from "@/router";
 
 
 function delay() {
@@ -30,36 +30,32 @@ axios.get = async (url: string) => {
 };
 
 // @ts-ignore
-axios.post = async (url: string, post: Post) => {
+axios.post = async (url: string, payload: any) => {
   await delay();
   if (url === "/posts") {
     const id = random(1, 10000);
     return Promise.resolve({
       data: {
-        ...post,
+        ...payload,
         id
       }
     });
   }
-};
 
-// @ts-ignore
-axios.post = async (url: string, user: User) => {
-  await delay();
   if (url === "/users") {
     const id = random(1, 10000);
     return Promise.resolve({
       data: {
-        ...user,
+        ...payload,
         id
       }
     });
   }
+
 };
 
 const app = createApp(App);
+app.use(router(store));
 
-app.use(router);
-// TODO: fix that out type err
 app.provide(storeKey, store);
 app.mount("#app");
