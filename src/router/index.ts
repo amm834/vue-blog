@@ -50,7 +50,9 @@ export default function(store: any) {
         path: "/"
       });
     }
+
   });
+
 
   return router;
 }

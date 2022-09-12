@@ -13,6 +13,7 @@ const auth = computed(() => {
 });
 
 const signOut = () => {
+  store.signOutUser();
 };
 const signUp = () => {
   modal.component.value = SignUp;

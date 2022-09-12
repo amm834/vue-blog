@@ -81,6 +81,14 @@ export class Store {
     this.state.posts.all.set(response.data.id, response.data);
   }
 
+  async signOutUser() {
+    const userId = this.state.users.currentUserId;
+    if (userId) {
+      this.state.users.all.delete(userId);
+    }
+    this.state.users.currentUserId = undefined;
+  }
+
 
 }
 

@@ -16,7 +16,7 @@ const emits = defineEmits<{
 }>();
 
 const title = $ref(post.title);
-let content = ref("Enter your post in markdown here \n ");
+let content = ref(post.markdown || "Enter your post in markdown here \n ");
 let html = ref("");
 
 const parseHTML = (raw: string) => {
