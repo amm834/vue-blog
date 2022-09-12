@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../components/Home.vue";
 import NewPost from "../components/NewPost.vue";
+import ShowPost from "../components/ShowPost.vue";
 
 export default function(store: any) {
   const router = createRouter({
@@ -9,6 +10,10 @@ export default function(store: any) {
       {
         path: "/",
         component: Home
+      },
+      {
+        path: "/posts/:id",
+        component: ShowPost
       },
       {
         path: "/posts/new",
