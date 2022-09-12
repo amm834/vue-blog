@@ -16,6 +16,14 @@ console.log(post);
 
 <template>
   <div>
-    Show post
+    <router-link :to="`/posts/${post.id}/edit`"
+                 class="btn btn-outline-info"
+    >
+      Edit
+    </router-link>
+
+    <div>
+      show post
+    </div>
   </div>
 </template>

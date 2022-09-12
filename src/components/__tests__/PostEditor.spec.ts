@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mount } from "@vue/test-utils";
-import PostEditor from "../PostEditor.vue";
+import PostEditor from "../PostWriter.vue";
 import moment from "moment";
 import { nextTick } from "vue";
 

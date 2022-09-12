@@ -30,7 +30,7 @@ async function submit() {
   };
   await store.createUser(user);
   modal.hideModal();
-  await router.push("/posts/new");
+  await router.push("/");
 }
 
 </script>

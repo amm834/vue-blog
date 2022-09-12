@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import PostEditor from "@/components/PostEditor.vue";
+import PostEditor from "@/components/PostWriter.vue";
 import type { Post } from "@/mocks";
 import moment from "moment";
 import useStore from "@/store";
