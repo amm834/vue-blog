@@ -35,6 +35,7 @@ axios.post = async (url: string, payload: any) => {
   if (url === "/posts") {
     const id = random(100, 1000).toString();
     const post = {
+      ...payload,
       id: id.toString(),
       title: payload.title,
       html: payload.html,

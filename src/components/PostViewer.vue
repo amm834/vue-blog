@@ -25,7 +25,9 @@ const isAuthorized = post.authorId === store.getState().users.currentUserId;
     </router-link>
 
     <div>
-      show post
+      <h3>{{ post.title }}</h3>
+      <div v-html="post.html"></div>
+
     </div>
   </div>
 </template>
