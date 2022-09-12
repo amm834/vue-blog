@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { useRoute, useRouter } from "vue-router";
 import useStore from "@/store";
+import PostWriter from "@/components/PostWriter.vue";
+import { Post } from "@/mocks";
 
 const routes = useRoute();
 const id = routes.params.id as string;
@@ -20,9 +22,14 @@ if (!post) {
 if (post.authorId !== store.getState().users.currentUserId) {
   await router.push("/");
 }
+
+const updatePost = async (post: Post) => {
+  await store.updatePost(post);
+  await router.push("/");
+};
 </script>
 
 
 <template>
-  Post editor
+  <PostWriter :post="post" @save="updatePost" />
 </template>

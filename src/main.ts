@@ -60,6 +60,26 @@ axios.post = async (url: string, payload: any) => {
 
 };
 
+//@ts-ignore
+axios.put = async (url: string, payload: any) => {
+  await delay();
+  if (url === "/posts") {
+    const post = {
+      ...payload,
+      title: payload.title,
+      html: payload.html,
+      created: payload.created,
+      markdown: payload.markdown,
+      authorId: payload.authorId
+    };
+    return Promise.resolve({
+      data: post
+    });
+  }
+
+
+};
+
 const app = createApp(App);
 app.use(router(store));
 

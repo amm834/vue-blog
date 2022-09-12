@@ -76,6 +76,12 @@ export class Store {
     this.state.posts.ids.push(response.data.id);
   }
 
+  async updatePost(post: Post) {
+    const response = await axios.put<Post>("/posts", post);
+    this.state.posts.all.set(response.data.id, response.data);
+  }
+
+
 }
 
 const all = new Map();
