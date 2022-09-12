@@ -43,6 +43,20 @@ axios.post = async (url: string, post: Post) => {
   }
 };
 
+// @ts-ignore
+axios.post = async (url: string, user: User) => {
+  await delay();
+  if (url === "/users") {
+    const id = random(1, 10000);
+    return Promise.resolve({
+      data: {
+        ...user,
+        id
+      }
+    });
+  }
+};
+
 const app = createApp(App);
 
 app.use(router);

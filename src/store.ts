@@ -3,15 +3,26 @@ import type { Post } from "@/mocks";
 import { thisMonth, thisWeek, today } from "@/mocks";
 import axios from "axios";
 
+
 interface State {
   posts: PostsState;
+  users: AuthorState;
 }
 
-interface PostsState {
+interface BaseState<T> {
   ids: string[];
-  all: Map<string, Post>;
+  all: Map<string, T>;
   loaded: boolean;
 }
+
+
+export type Author = Omit<User, "password">
+
+interface AuthorState extends BaseState<Author> {
+  currentUserId: string | undefined;
+}
+
+type PostsState = BaseState<Post>
 
 export interface User {
   id: string;
@@ -52,7 +63,11 @@ export class Store {
 
 
   async createUser(user: User) {
-    console.log(user);
+    const response = await axios.post<Author>("/users", user);
+    this.state.users.all.set(response.data.id, response.data);
+    this.state.users.ids.push(response.data.id);
+    this.state.users.currentUserId = response.data.id;
+
   }
 
   async createPost(post: Post) {
@@ -67,8 +82,13 @@ const all = new Map();
 all.set(today.id, today);
 all.set(thisWeek.id, thisWeek);
 all.set(thisMonth.id, thisMonth);
-
 export const store = new Store({
+  users: {
+    all: new Map<string, User>(),
+    ids: [],
+    loaded: false,
+    currentUserId: undefined
+  },
   posts: {
     all,
     ids: [today.id, thisWeek.id, thisMonth.id],

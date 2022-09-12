@@ -16,10 +16,8 @@ const username = $ref("some");
   <nav class="navbar navbar-expand-lg mt-3">
     <div class="container-fluid">
       <div>
-        <router-link to="/posts/new" class="btn btn-outline-primary shadow-sm">New Post</router-link>
-      </div>
-      <div class="ms-auto">
         <button class="btn btn-outline-success shadow-sm" @click="showModal">Sign Up</button>
+        <router-link to="/posts/new" class="btn btn-outline-primary shadow-sm mx-3">New Post</router-link>
       </div>
     </div>
   </nav>

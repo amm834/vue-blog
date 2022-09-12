@@ -42,7 +42,7 @@ async function submit() {
         />
         <FormInput
           label="Password"
-          type="text"
+          type="password"
           v-model="password"
           :error="passwordStatus.message"
         />
