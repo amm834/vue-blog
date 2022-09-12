@@ -17,7 +17,6 @@ defineEmits<{
   <div class="mb-3">
     <label class="form-label d-block">{{ label }}</label>
     <input
-      id="name"
       :type="type"
       :value="modelValue"
       @input="$emit('update:modelValue',$event.target.value)"
