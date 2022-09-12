@@ -26,7 +26,7 @@ async function submit() {
   const user: User = {
     id: "-1",
     username,
-    password
+    password,
   };
   await store.createUser(user);
   modal.hideModal();

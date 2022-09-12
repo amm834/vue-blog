@@ -33,13 +33,14 @@ axios.get = async (url: string) => {
 axios.post = async (url: string, payload: any) => {
   await delay();
   if (url === "/posts") {
-    const id = random(1, 10000);
+    const id = random(100, 1000).toString();
     const post = {
       id: id.toString(),
       title: payload.title,
       html: payload.html,
       created: payload.created,
-      markdown: payload.markdown
+      markdown: payload.markdown,
+      authorId: payload.authorId
     };
     return Promise.resolve({
       data: post
@@ -47,7 +48,7 @@ axios.post = async (url: string, payload: any) => {
   }
 
   if (url === "/users") {
-    const id = random(1, 10000);
+    const id = random(1, 10000).toString();
     return Promise.resolve({
       data: {
         ...payload,
